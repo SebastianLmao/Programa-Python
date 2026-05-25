@@ -1,0 +1,46 @@
+# Nombre: Sebastian Cifuentes
+# Grupo: 213022
+# Programa: Ingenieria en Sistemas
+# Codigo Fuente: Sistema de Panaderia
+inventario = [
+    ["ART01", "Monitores 24'", 12, 15],
+    ["ART02", "Teclados Mecánicos", 45, 30],
+    ["ART03", "Ratones Inalámbricos", 8, 20],
+    ["ART04", "Cables HDMI 2m", 50, 50],
+    ["ART05", "Auriculares Gamer", 3, 10]
+]
+
+# 2. MÓDULO (Función para calcular la cantidad exacta a pedir)
+def calcular_cantidad_a_pedir(stock_actual, stock_minimo):
+    """
+    Aplica la lógica de negocio para determinar el reabastecimiento.
+    """
+    if stock_actual < stock_minimo:
+        return stock_minimo - stock_actual  # Diferencia requerida
+    else:
+        return 0  # Stock suficiente
+
+# 3. PROCESAMIENTO Y SALIDA
+def generar_reporte_pedidos(matriz_inventario):
+    print("=" * 45)
+    print("       REPORTE DE AUDITORÍA DE PEDIDOS")
+    print("=" * 45)
+    print(f"{'ARTÍCULO':<25} | {'CANTIDAD A PEDIR':<15}")
+    print("-" * 45)
+    
+    # Recorrer la matriz artículo por artículo
+    for articulo in matriz_inventario:
+        nombre = articulo[1]
+        stock_actual = articulo[2]
+        stock_minimo = articulo[3]
+        
+        # Llamada al módulo de lógica de negocio
+        cantidad_pedir = calcular_cantidad_a_pedir(stock_actual, stock_minimo)
+        
+        # Imprimir solo los datos solicitados en la salida
+        print(f"{nombre:<25} | {cantidad_pedir:<15}")
+        
+    print("=" * 45)
+
+# Ejecutar la herramienta
+generar_reporte_pedidos(inventario)
